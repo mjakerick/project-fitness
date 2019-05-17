@@ -5,6 +5,9 @@ const mongoose = require('mongoose');
 app.use(express.static('public'));
 app.use(express.json());
 
+const logsController = require('./controllers/logs.js');
+app.use('/logs', logsController);
+
 app.listen(3000, () => {
   console.log('listening...');
 });
