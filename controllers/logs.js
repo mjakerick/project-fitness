@@ -20,4 +20,10 @@ router.post('/', (req, res) => {
   })
 })
 
+router.put('/:id', (req, res) => {
+  Logs.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedLog) => {
+    res.json(updatedLog)
+  })
+})
+
 module.exports = router;
