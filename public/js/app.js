@@ -37,4 +37,21 @@ app.controller('MyController', ['$http', function($http){
       console.log('error');
     })
   }
+
+  this.updateLog = function(log){
+    $http({
+      method:'PUT',
+      url: '/logs/' + log._id,
+      data: {
+        title: this.updatedTitle,
+        description: this.updatedDescription
+      }
+    }).then(
+      function(response){
+        controller.getEntry();
+        controller.indexOfEditFormToShow = null;
+      }, function(error){
+
+      });
+    }
 }])
