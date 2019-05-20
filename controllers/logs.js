@@ -14,4 +14,10 @@ router.delete('/:id', (req, res) => {
   })
 })
 
+router.post('/', (req, res) => {
+  Logs.create(req.body, (err, createdLog) => {
+    res.json(createdLog)
+  })
+})
+
 module.exports = router;
