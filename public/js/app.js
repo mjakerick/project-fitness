@@ -16,5 +16,16 @@ app.controller('MyController', ['$http', function($http){
       });
   }
 
-  
+  this.getLog = function(){
+    $http({
+      method: 'GET',
+      url: '/logs'
+    }).then(function(response) {
+      console.log(response);
+    }, function(){
+      console.log('error');
+    })
+  }
+
+
 }])
