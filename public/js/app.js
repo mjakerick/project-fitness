@@ -48,10 +48,9 @@ app.controller('MyController', ['$http', function($http){
       }
     }).then(
       function(response){
-        controller.getEntry();
-        controller.indexOfEditFormToShow = null;
+        console.log(response);
       }, function(error){
-
+        console.log('error');
       });
     }
 }])
