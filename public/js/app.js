@@ -27,5 +27,14 @@ app.controller('MyController', ['$http', function($http){
     })
   }
 
-
+  this.deleteLog = id => {
+    $http({
+      method: 'DELETE',
+      url: '/logs/' + id
+    }).then(response => {
+      console.log(response);
+    }, function(){
+      console.log('error');
+    })
+  }
 }])
