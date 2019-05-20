@@ -1,19 +1,21 @@
 const app = angular.module('FitnessApp', []);
 
 app.controller('MyController', ['$http', function($http){
+  const controller = this;
   this.createLog = function(){
-      $http({
-        method:'POST',
-        url: '/logs',
-        data: {
-            title: this.title,
-            description: this.description
-          }
-      }).then(function(response){
-          console.log(response);
-      }, function(){
-          console.log('error');
-      });
+    $http({
+      method:'POST',
+      url: '/logs',
+      data: {
+        title: this.title,
+        description: this.description
+      }
+    }).then(function(response){
+      controller.getLog()
+      console.log(response);
+    }, function(){
+      console.log('error');
+    });
   }
 
   this.getLog = function(){
@@ -21,7 +23,7 @@ app.controller('MyController', ['$http', function($http){
       method: 'GET',
       url: '/logs'
     }).then(function(response) {
-      console.log(response);
+      controller.logs = response.data
     }, function(){
       console.log('error');
     })
@@ -32,6 +34,7 @@ app.controller('MyController', ['$http', function($http){
       method: 'DELETE',
       url: '/logs/' + id
     }).then(response => {
+      this.getLog()
       console.log(response);
     }, function(){
       console.log('error');
@@ -48,9 +51,12 @@ app.controller('MyController', ['$http', function($http){
       }
     }).then(
       function(response){
+        controller.getLog()
         console.log(response);
       }, function(error){
         console.log('error');
       });
     }
+
+    this.getLog()
 }])
