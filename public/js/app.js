@@ -5,6 +5,23 @@ app.controller('MyController', ['$http', function($http){
   this.indexOfCreateFormToShow = null;
   this.indexOfEditFormToShow = null;
 
+  this.createUser = function(){
+    $http({
+      method:'POST',
+      url:'/users',
+      data: {
+        username: this.username,
+        password: this.password
+      }
+    }).then(function(response){
+      console.log(response);
+      controller.username = null;
+      controller.password = null;
+    }, function(error){
+      console.log(error);
+    })
+  }
+
   this.createLog = function(){
     $http({
       method:'POST',
