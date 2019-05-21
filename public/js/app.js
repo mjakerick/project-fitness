@@ -2,6 +2,8 @@ const app = angular.module('FitnessApp', []);
 
 app.controller('MyController', ['$http', function($http){
   const controller = this;
+  this.indexOfEditFormToShow = null;
+
   this.createLog = function(){
     $http({
       method:'POST',
@@ -13,7 +15,6 @@ app.controller('MyController', ['$http', function($http){
       }
     }).then(function(response){
       controller.getLog()
-      // console.log(response);
     }, function(){
       console.log('error');
     });
@@ -36,7 +37,6 @@ app.controller('MyController', ['$http', function($http){
       url: '/logs/' + id
     }).then(response => {
       this.getLog()
-      console.log(response);
     }, function(){
       console.log('error');
     })
@@ -54,7 +54,7 @@ app.controller('MyController', ['$http', function($http){
     }).then(
       function(response){
         controller.getLog()
-        console.log(response);
+        controller.indexOfEditFormToShow = null;
       }, function(error){
         console.log('error');
       });
