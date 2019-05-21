@@ -7,12 +7,13 @@ app.controller('MyController', ['$http', function($http){
       method:'POST',
       url: '/logs',
       data: {
+        type: this.type,
         title: this.title,
         description: this.description
       }
     }).then(function(response){
       controller.getLog()
-      console.log(response);
+      // console.log(response);
     }, function(){
       console.log('error');
     });
@@ -46,6 +47,7 @@ app.controller('MyController', ['$http', function($http){
       method:'PUT',
       url: '/logs/' + log._id,
       data: {
+        type: this.type,
         title: this.updatedTitle,
         description: this.updatedDescription
       }

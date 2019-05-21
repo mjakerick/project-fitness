@@ -12,12 +12,16 @@
 <body ng-controller="MyController as ctrl">
   <h1>Project Fitness</h1>
   <form ng-submit="ctrl.createLog()">
+    <select ng-model="ctrl.type" id = "myList">
+      <option value = "weights">Weights</option>
+      <option value = "cardio">Cardio</option>
+    </select>
     <input type="text" ng-model="ctrl.title" placeholder="Title">
     <input type="text" ng-model="ctrl.description" placeholder='Description'>
     <input type="submit" value="Add Log">
   </form>
   <ul>
-    <li ng-repeat="log in ctrl.logs">{{ log.title }}: {{ log.description }}</li>
+    <li ng-repeat="log in ctrl.logs">{{ log.title }}: {{ log.description }} <button ng-click="ctrl.deleteLog(log._id)">x</button> </li>
   </ul>
 </body>
 </html>
