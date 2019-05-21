@@ -22,6 +22,24 @@ app.controller('MyController', ['$http', function($http){
     })
   }
 
+  this.logIn = function(){
+    $http({
+      method:'POST',
+      url:'/sessions',
+      data: {
+        username: this.username,
+        password: this.password
+      }
+    }).then(function(response){
+      console.log(response);
+      controller.username = null;
+      controller.password = null;
+      // controller.goApp();
+    }, function(error){
+      console.log(error);
+    })
+  }
+
   this.createLog = function(){
     $http({
       method:'POST',
@@ -33,6 +51,9 @@ app.controller('MyController', ['$http', function($http){
       }
     }).then(function(response){
       controller.getLog()
+      controller.type = null;
+      controller.title = null;
+      controller.description = null;
     }, function(){
       console.log('error');
     });
