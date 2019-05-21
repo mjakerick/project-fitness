@@ -2,6 +2,7 @@ const app = angular.module('FitnessApp', []);
 
 app.controller('MyController', ['$http', function($http){
   const controller = this;
+  this.indexOfCreateFormToShow = null;
   this.indexOfEditFormToShow = null;
 
   this.createLog = function(){
@@ -47,7 +48,7 @@ app.controller('MyController', ['$http', function($http){
       method:'PUT',
       url: '/logs/' + log._id,
       data: {
-        type: this.type,
+        type: this.updatedType,
         title: this.updatedTitle,
         description: this.updatedDescription
       }
@@ -55,9 +56,16 @@ app.controller('MyController', ['$http', function($http){
       function(response){
         controller.getLog()
         controller.indexOfEditFormToShow = null;
+        controller.updatedType = null;
+        controller.updatedTitle = null;
+        controller.updatedDescription = null;
       }, function(error){
         console.log('error');
       });
+    }
+
+    this.cancel = function(){
+      controller.indexOfEditFormToShow = null;
     }
 
     this.getLog()
