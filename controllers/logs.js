@@ -3,7 +3,8 @@ const router = express.Router();
 const Logs = require('../models/logs.js');
 
 router.get('/', (req, res) => {
-  Logs.find({}, (error, foundLog) => {
+  Logs.find({userId: req.session.currentUser._id}, (error, foundLog) => {
+    // console.log(req.session.currentUser._id);
     res.json(foundLog);
   });
 });

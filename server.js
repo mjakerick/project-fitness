@@ -16,6 +16,18 @@ app.use(session({
   saveUninitialized: false
 }))
 
+app.get('/app', (req, res)=>{
+  if(req.session.currentUser){
+    // console.log(req.session.currentUser);
+    res.json(req.session.currentUser);
+  } else {
+    res.status(401).json({
+      status:401,
+      message:'not logged in'
+    })
+  }
+})
+
 const logsController = require('./controllers/logs.js');
 app.use('/logs', logsController);
 

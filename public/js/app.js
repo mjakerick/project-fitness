@@ -10,13 +10,11 @@ app.controller('MyController', ['$http', function($http){
       method:'POST',
       url:'/users',
       data: {
-        username: this.username,
-        password: this.password
+        username: this.createUsername,
+        password: this.createPassword
       }
     }).then(function(response){
-      console.log(response);
-      controller.username = null;
-      controller.password = null;
+      // console.log(response);
     }, function(error){
       console.log(error);
     })
@@ -31,13 +29,38 @@ app.controller('MyController', ['$http', function($http){
         password: this.password
       }
     }).then(function(response){
-      console.log(response);
-      controller.username = null;
-      controller.password = null;
-      // controller.goApp();
+      // console.log(response);
+      controller.indexOfLoginFormToShow = null;
+      controller.getLog();
+      controller.goApp();
     }, function(error){
       console.log(error);
     })
+  }
+
+  this.logOut = function(){
+    $http({
+      method:'DELETE',
+      url:'/sessions'
+    }).then(function(response){
+      // console.log(response);
+      controller.loggedInUsername = null;
+    }, function(error){
+      console.log(error);
+    });
+  }
+
+  this.goApp = function(){
+    $http({
+      method:'GET',
+      url:'/app'
+    }).then(function(response){
+      controller.loggedInUsername = response.data.username;
+      // console.log(response.data._id);//user specific id
+      controller.userId = response.data._id
+    }, function(error){
+      console.log(error);
+    });
   }
 
   this.createLog = function(){
@@ -45,15 +68,18 @@ app.controller('MyController', ['$http', function($http){
       method:'POST',
       url: '/logs',
       data: {
+        userId: controller.userId,
         type: this.type,
         title: this.title,
         description: this.description
       }
     }).then(function(response){
       controller.getLog()
+      // controller.goApp();
       controller.type = null;
       controller.title = null;
       controller.description = null;
+      // console.log(response);
     }, function(){
       console.log('error');
     });
@@ -62,9 +88,11 @@ app.controller('MyController', ['$http', function($http){
   this.getLog = function(){
     $http({
       method: 'GET',
-      url: '/logs'
+      url: '/logs', // + this.userId,
     }).then(function(response) {
       controller.logs = response.data
+      // console.log(response.data);
+      // console.log(this.userId);
     }, function(){
       console.log('error');
     })
@@ -106,5 +134,5 @@ app.controller('MyController', ['$http', function($http){
       controller.indexOfEditFormToShow = null;
     }
 
-    this.getLog()
+    // this.getLog()
 }])
