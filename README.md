@@ -16,9 +16,9 @@ This project was meant to be a group project, but unfortunately I had a graduati
 
 ## Unfinished Business
 
-I would've liked to add different forms based on the type of exercise preformed so that I user could log sets, reps, calories, laps, distance, time, etc. depending on what would be most relevant for the exercise.
+I would've liked to add different forms based on the type of exercise preformed so that I user could log sets, reps, calories, laps, distance, time, etc. depending on what would be most relevant for the exercise. I should've added a date input to the form, it just slipped my mind.
 
-I also would have liked to add a more attractive way to display the user's data using graphs or some type of charting to make the user's progress more visual.
+I also would have liked to add a more attractive way to display the user's data using graphs or some type of charting to make the user's progress more visual. A nav bar would've been really nice for navigating the user's data.
 
 I only added some very subtle styling to the app. One of my main goals for this project was to really spend some time making it look nice, but I didn't really get the chance... I'd like to revisit this project in the future.
 
