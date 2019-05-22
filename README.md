@@ -1,6 +1,6 @@
 # Project-fitness
 
-Fitness Tracking Application: (https://project-fitness-log.herokuapp.com/)
+Fitness Tracking Application: https://project-fitness-log.herokuapp.com/
 
 ## Description
 
