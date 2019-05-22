@@ -57,10 +57,14 @@
 
   <ul ng-if="ctrl.loggedInUsername">
     <li class="data" ng-repeat="log in ctrl.logs">
+      <div>
+        {{ log.type }} {{ log.title }}: {{ log.description }}
+      </div>
+      <div>
+        <button class="btn" ng-if="$index !== ctrl.indexOfEditFormToShow" ng-click="ctrl.indexOfEditFormToShow = $index">EDIT</button>
+        <button class="btnx" ng-click="ctrl.deleteLog(log._id)">x</button>
+      </div>
 
-      {{ log.type }} {{ log.title }}: {{ log.description }}
-
-      <button class="btnx" ng-click="ctrl.deleteLog(log._id)">x</button>
 
       <form ng-submit="ctrl.updateLog(log)" ng-if="$index === ctrl.indexOfEditFormToShow">
 
@@ -76,7 +80,7 @@
         <button class="btnx" ng-click="ctrl.cancel()">cancel</button>
       </form>
 
-      <button class="btn" ng-if="$index !== ctrl.indexOfEditFormToShow" ng-click="ctrl.indexOfEditFormToShow = $index">EDIT</button>
+
     </li>
   </ul>
 
