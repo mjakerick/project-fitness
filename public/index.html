@@ -16,67 +16,67 @@
   <div ng-if="$index === ctrl.indexOfLoginFormToShow">
     <h2>Create User</h2>
     <form ng-submit="ctrl.createUser()">
-      <input type="text" ng-model="ctrl.createUsername"/>
-      <input type="password" ng-model="ctrl.createPassword"/>
-      <input type="submit" value="Create User" />
+      <input class="input" type="text" ng-model="ctrl.createUsername"/>
+      <input class="input" type="password" ng-model="ctrl.createPassword"/>
+      <input class="btn" type="submit" value="Create User" />
     </form>
     <h2>Log In</h2>
       <form ng-submit="ctrl.logIn()">
-        <input type="text" ng-model="ctrl.username"/>
-        <input type="password" ng-model="ctrl.password"/>
-        <input type="submit" value="Log In" />
+        <input class="input" type="text" ng-model="ctrl.username"/>
+        <input class="input" type="password" ng-model="ctrl.password"/>
+        <input class="btn" type="submit" value="Log In" />
       </form>
   </div>
 
   <div ng-if="ctrl.loggedInUsername">
     <h2>Welcome, {{ctrl.loggedInUsername}}</h1>
     <form ng-submit="ctrl.logOut()">
-      <input ng-click="ctrl.indexOfLoginFormToShow = $index" type="submit" value="Logout">
+      <input class="btnx" ng-click="ctrl.indexOfLoginFormToShow = $index" type="submit" value="Logout">
     </form>
   </div>
 
   <div ng-if="ctrl.loggedInUsername">
-    <button ng-click="ctrl.indexOfCreateFormToShow = $index">Create New Log</button>
+    <button class="btn" ng-click="ctrl.indexOfCreateFormToShow = $index">Create New Log</button>
 
     <div ng-if="$index === ctrl.indexOfCreateFormToShow">
       <form ng-submit="ctrl.createLog()">
 
-        <select ng-model="ctrl.type" id = "myList">
+        <select class="input" ng-model="ctrl.type" id = "myList">
           <option value="" selected disabled hidden>Type of Exercise</option>
           <option value = "Strength">Strength</option>
           <option value = "Cardio">Cardio</option>
         </select>
 
-        <input type="text" ng-model="ctrl.title" placeholder="Title">
-        <input type="text" ng-model="ctrl.description" placeholder='Description'>
-        <input type="submit" value="Add Log">
+        <input class="input" type="text" ng-model="ctrl.title" placeholder="Title">
+        <input class="input" type="text" ng-model="ctrl.description" placeholder='Description'>
+        <input class="btn" type="submit" value="Add Log">
 
       </form>
     </div>
   </div>
 
   <ul ng-if="ctrl.loggedInUsername">
-    <li ng-repeat="log in ctrl.logs">
+    <li class="data" ng-repeat="log in ctrl.logs">
 
       {{ log.type }} {{ log.title }}: {{ log.description }}
 
-      <button ng-click="ctrl.deleteLog(log._id)">x</button>
+      <button class="btnx" ng-click="ctrl.deleteLog(log._id)">x</button>
 
       <form ng-submit="ctrl.updateLog(log)" ng-if="$index === ctrl.indexOfEditFormToShow">
 
-        <select ng-model="ctrl.updatedType" id="Type">
+        <select class="input" ng-model="ctrl.updatedType" id="Type">
           <option value="" selected disabled hidden>Type of Exercise</option>
           <option value = "Strength">Strength</option>
           <option value = "Cardio">Cardio</option>
         </select>
 
-        <input type="text" ng-model="ctrl.updatedTitle" placeholder="Title">
-        <input type="text" ng-model="ctrl.updatedDescription" placeholder="Description">
-        <input type="submit" name="" value="Update">
-        <button ng-click="ctrl.cancel()">cancel</button>
+        <input class="input" type="text" ng-model="ctrl.updatedTitle" placeholder="Title">
+        <input class="input" type="text" ng-model="ctrl.updatedDescription" placeholder="Description">
+        <input class="btn" type="submit" name="" value="Update">
+        <button class="btnx" ng-click="ctrl.cancel()">cancel</button>
       </form>
 
-      <button ng-if="$index !== ctrl.indexOfEditFormToShow" ng-click="ctrl.indexOfEditFormToShow = $index">EDIT</button>
+      <button class="btn" ng-if="$index !== ctrl.indexOfEditFormToShow" ng-click="ctrl.indexOfEditFormToShow = $index">EDIT</button>
     </li>
   </ul>
 
